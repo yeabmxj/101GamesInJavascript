@@ -14,7 +14,7 @@ const winningCombos = [
 
 let board; 		//game board
 let turn = 'X'; //starting move
-let win = board[0] && board[0] === board[1] && board[0] === board[2] ? board[0] : null;
+let win;
 
 //cached element references
 
@@ -24,6 +24,7 @@ const messages = document.querySelector('h2');
 //event listners
 
 document.getElementById('board').addEventListener('click', handleTurn);
+document.getElementById('reset-button').addEventListener('click', init);
 
 //functions
 
@@ -62,7 +63,7 @@ function render() {		//iterate over board, add mark where necessary
 	board.forEach(function(mark,index) {
 		squares[index].textContent = mark;
 	});
-	messages.textContent = win ? `${win} wins the game` : `It's ${turn}'s turn!`;	
+	messages.textContent = win === 'T' ? `That's a tie, queen!` : win ? `${win} wins the game!` : `It's ${turn}'s turn!`;
 };
 
 init();
